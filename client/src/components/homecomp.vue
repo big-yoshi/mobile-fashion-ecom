@@ -1,11 +1,11 @@
 <template>
 <div class="container">
   <h1>Men</h1>
-  <div class="suit">
+  <div class="card suit">
     <img src="HOME/suit.png" alt="">
     <span style="color:white;">Suit</span>
   </div>
-  <div class="hoodie">
+  <div class="card hoodie">
     <div class="rect">
       <img src="HOME/hoodie.png" alt="">
     </div>
@@ -13,7 +13,7 @@
     <span>Hoodie</span>
 
   </div>
-  <div class="track">
+  <div class="card track">
     
 
     <span>Track
@@ -43,7 +43,7 @@ h1{
   grid-template-columns: auto auto;
   place-items:center;
   border-radius: 15px;
-  margin-top: 100px;
+  margin-top: 120px;
 }
 
 .suit img{
@@ -71,7 +71,7 @@ span{
 .hoodie{
   
   height:140px;
-  margin-top:120px;
+  margin-top:140px;
   display: grid;
   grid-template-columns: auto auto;
   
@@ -99,7 +99,7 @@ span{
 .track{
   
   height:140px;
-  margin-top:120px;
+  margin-top:140px;
   display: grid;
   grid-template-columns: 50% 50%;
   position: relative;
@@ -132,6 +132,11 @@ span{
 
 </style>
 <script>
+import { gsap } from 'gsap';
+import { CSSPlugin } from 'gsap/CSSPlugin'
+gsap.registerPlugin(CSSPlugin);
+
+
 export default {
   name: "HomeCon",
   props: {
