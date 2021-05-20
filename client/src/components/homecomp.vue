@@ -30,9 +30,6 @@
 
 <style scoped>
 
-.container{
-  
-}
 h1{
   font-size:36px;
 }
@@ -139,9 +136,13 @@ gsap.registerPlugin(CSSPlugin);
 
 export default {
   name: "HomeCon",
-  props: {
-    msg: String,
+  methods:{
+
   },
+  mounted: function(){
+    gsap.from('.card',{opacity:0,duration:2})
+  }
+
 };
 </script>
 

@@ -6,7 +6,9 @@
             </div>
             
             <div id="search">
-                <img src="search.svg">
+                <a href="/about">
+                    <img src="search.svg">
+                </a>
             </div>
             
         </div>
@@ -49,7 +51,9 @@
     position: absolute;
     justify-self: end;
 }
-
+#search a{
+    cursor: pointer;    
+}
 .fullscreen{
     display: grid;
     place-items: center;
@@ -63,7 +67,7 @@
     top: 0;
     left: 0;
     opacity: 0;
-    
+    display: none;
     
 }
 
@@ -121,9 +125,12 @@
         methods:{
             showMenu: function(){
                 gsap.to(".fullscreen", {opacity:1,zIndex:99,duration:0.4});
+                gsap.to(".fullscreen",{display:'grid'});
             },
             closeMenu: function(){
                 gsap.to(".fullscreen", {opacity:0,zIndex:-1, duration:0.3});
+                gsap.to(".fullscreen",{display:'none'});
+                
             }
         }
 
