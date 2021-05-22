@@ -6,7 +6,7 @@
             </div>
             
             <div id="search">
-                <a href="/about">
+                <a href="/find">
                     <img src="search.svg">
                 </a>
             </div>
