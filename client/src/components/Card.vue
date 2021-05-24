@@ -7,7 +7,10 @@
             </div>
             
         </div>
-        <h1>{{Title}}</h1>
+        <h1>
+            <Details>{{Title}}</Details>
+            
+        </h1>
 
     </div>
     
@@ -80,8 +83,14 @@ h1{
 </style>
 
 <script>
+
+import { gsap } from 'gsap';
+import { CSSPlugin } from 'gsap/CSSPlugin'
+gsap.registerPlugin(CSSPlugin);
+
 export default {
     name:"Card",
+    
     props:{
         Title: String,
         Link: String

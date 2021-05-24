@@ -53,7 +53,7 @@
         </div>
         
         <div class="content-container">
-            <Card v-for="item in result" v-bind:key="item.id" v-bind:Title="item.Title" v-bind:Link="item.img_link"></Card>
+            <Card v-for="item in filterResults()" v-bind:key="item.id" v-bind:Title="item.Title" v-bind:Link="item.img_link"></Card>
         </div>
     </div>    
 </template>
@@ -223,8 +223,11 @@ export default {
     data: function(){
         return {
             result: [
-                {Title:"Grey shirt", gender:"male", type:"top" ,img_link:'https://images.pexels.com/photos/775358/pexels-photo-775358.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'},
-                {Title: "leather jacket",gender:"female", type:'top',img_link:"https://images.pexels.com/photos/1034859/pexels-photo-1034859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"}
+                {Title: "Grey shirt", gender:"male", season:'winter',type:"top" ,img_link:'https://images.pexels.com/photos/775358/pexels-photo-775358.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'},
+                {Title: "Leather jacket",gender:"female", season:'winter',type:'top',img_link:"https://images.pexels.com/photos/1034859/pexels-photo-1034859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
+                {Title: "Track suit", gender:'female', season:"summer",type:'all', img_link:'https://images.pexels.com/photos/6647704/pexels-photo-6647704.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'},
+                {Title: 'Shirt', gender: 'male', season:"summer",type: 'top', img_link: ''},
+                {Title: 'Blank', gender: 'female', type: 'jeans', season:'summer',img_link: ''},
             ],
             
             filters:{
@@ -247,6 +250,34 @@ export default {
             
             updateFilters: function(cate, val){
                 this.filters[cate] = val;
+            },
+            filterResults: function(){
+                var _this = this;
+                let fltd = _this.result.filter(function (el){
+
+                    if (_this.filters['gender'] == 'all' && _this.filters['type'] != 'all' && _this.filters['season'] != 'all'){
+                        return  el.type == _this.filters['type'] && el.season == _this.filters['season']    
+                    }
+
+                    if (_this.filters['season'] == 'all' && _this.filters['type'] != 'all' && _this.filters['gender'] != 'all'){
+                        return  el.type == _this.filters['type'] && el.season == _this.filters['gender']    
+                    }
+
+                    if (_this.filters['type'] == 'all' && _this.filters['gender'] != 'all' && _this.filters['season'] != 'all'){
+                        return  el.type == _this.filters['gender'] && el.season == _this.filters['season']    
+                    }
+                    
+                    if (_this.filters['type'] == 'all' && _this.filters['gender'] == 'all' && _this.filters['season'] == 'all'){
+                        return el
+                    }
+                    
+
+                    else{
+                        return el.gender == _this.filters['gender'] &&  el.type == _this.filters['type'] && el.season == _this.filters['season']
+                    }
+                    
+                });
+                return fltd;
             }
         },
     watch:{
