@@ -10,7 +10,9 @@
                 <div class="filter-container" >
                     <img src="filter.svg" alt="" class="filter-icon" v-on:click="showFilter()">
                 </div>
-                <div class="filterMenu">
+            </div>
+            
+            <div class="filterMenu">
 
                     <span id="close" v-on:click="closeFilter()">&#10006;</span>
                     <div class="lists">
@@ -46,12 +48,10 @@
                     </div>
                     
 
-                </div>
-            </div>
-            
-            
+        </div>
 
         </div>
+        
         <div class="content-container">
             <Card v-for="item in result" v-bind:key="item.id" v-bind:Title="item.Title" v-bind:Link="item.img_link"></Card>
         </div>
@@ -78,13 +78,11 @@
 
 .filters-btn{
     position: relative;
-    background: #001D3D;
+    
 }
 
-.filterMenu{
+.search-section .filterMenu{
     
-    
-    display: grid;
     place-items: center;
     background:white;
     width: 100%;
@@ -95,13 +93,13 @@
     position: fixed;
     top: 0;
     left: 0;
+    display: none;
     
-    display: none;  
     
 }
 
 .filterMenu .lists {
-    background:grey;
+    
     width: 90%;
     display: grid;
     place-items: center;
@@ -124,7 +122,8 @@
     height: 110%;
 }
 .filterMenu .lists span{
-    
+    display: grid;
+    place-items: center;
     font-size: 14px;
     border:1.4px solid rgba(0, 29, 61, 0.45);
     font-weight:200;
@@ -175,6 +174,8 @@
     background: #001D3D;
     border-radius: 15px;
     cursor: pointer;
+    height: 100%;
+    width:100%;
 }
 
 .filter-container img{
