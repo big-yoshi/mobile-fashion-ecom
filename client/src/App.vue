@@ -22,7 +22,7 @@ html,body{
 body{
   height: auto;
   width: 100%;
-  
+  max-width: 100%;
 }
 
 #app {

@@ -8,7 +8,7 @@
             
         </div>
         <h1>
-            <Details>{{Title}}</Details>
+            {{Title}}
             
         </h1>
 

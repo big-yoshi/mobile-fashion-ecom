@@ -22,6 +22,13 @@ const routes = [
     name: "Find",
     component: ()=> import('../views/Find.vue'),
   },
+  
+  {
+    path: '/showcase',
+    name: "Showcase",
+    component: ()=> import('../views/Showcase.vue'),
+  },
+  
 ];
 
 const router = createRouter({
