@@ -1,25 +1,26 @@
 <template>
     <div class="view">
-        <div class="img-bg">
+        <div class="img-bg" v-bind:style="{ 'background-image': 'url(' + img_link + ')' }">
             <div class="overlay">
-                <div class="upper-shadow"></div>
+                <div class="upper-shadow">
+                    <a href="find"><img src="return.svg" alt=""></a>
+                </div>
                 <div class="bottom-shadow"></div>
             </div>
         </div>
 
 
         <div class="info">
-            <div class="header"><h1>Grey Suit</h1> <span>$ 79.99</span></div>
+            <div class="header"><h1>{{name}}</h1> <span>$ {{price}}</span></div>
             <div class="middle">
                 <span>Size</span>
                 <div class="same-row">
                     <div class="size-cont">
                     
                     <div class="sizes">
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
+                        <span v-for="sz in sizes" v-bind:key="sz.id">
+                            {{sz}}
+                        </span>
                     </div>
                 </div>
                 <div class="colors">
@@ -67,7 +68,7 @@
 .img-bg{
     height: 70%;
     width: 100%;
-    background-image: url('https://images.pexels.com/photos/2955375/pexels-photo-2955375.jpeg?auto=compress&cs=tinysrgb&h=650&w=940');
+    
     background-position: center;
     background-size: cover;
     
@@ -85,6 +86,29 @@
 h1{
     margin: 0;
     
+}
+
+.upper-shadow{
+    
+    width: 100%;
+    height: 484px;
+    
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 32.29%, rgba(0, 0, 0, 0.3) 100%);
+    transform: rotate(-180deg);
+    display: grid;
+    place-items: end;
+    
+}
+
+.upper-shadow img{
+    height: 16px;
+    cursor: pointer;
+    position: relative;
+    transform: rotate(-180deg);
+    z-index: 99999;
+    right: 30px;
+    bottom: 42px;
 }
 
 .middle span{
@@ -157,6 +181,10 @@ h1{
     grid-template-columns: 3fr 1fr;
     place-items: center;
 }
+.middle .colors .current-color .dropdown{
+    display: grid;
+    place-items: center;
+}
 
 .middle .colors .current-color .color-cont{
     background: #001D3D;
@@ -206,8 +234,49 @@ h1{
 </style>
 
 <script>
+import auth from "@/services/auth";
+
 export default {
     name:"Expand"
+    ,
+    data(){
+        return {
+            img_link:String,
+            price: String,
+            name:String,
+            sizes:Array,
+            
+        }
+
+    },
+    methods:{
+
+
+        getIDfromURL : function(){
+            return window.location.href.split("?")[1].split('=')[1];
+        },
+
+        async getDataBack(){
+            try{
+                const resp = await auth.GetInfo({
+                    id:this.getIDfromURL()
+                });
+                console.log(resp.data);
+                this.img_link = resp.data.img_link
+                this.price = resp.data.price
+                this.sizes = resp.data.sizes
+                this.name = resp.data.name
+
+            } catch (error){
+                console.log(error);
+             }
+        
+        },
+    },
+    mounted:function(){        
+        this.getDataBack();
+    }
     
+
 }
 </script>

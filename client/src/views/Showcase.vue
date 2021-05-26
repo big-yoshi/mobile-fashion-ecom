@@ -1,5 +1,6 @@
 <template>
     <div class="view-page">
+        
         <Expand></Expand>
     </div>
 </template>
